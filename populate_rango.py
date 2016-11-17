@@ -50,8 +50,6 @@ def add_page(cat, title, url, views=0):
     p.save()
     return p
 
-tutaj dodjae zmiane
-
 def add_cat(name, views, likes):
     c = Category.objects.get_or_create(name=name)[0]
     c.views = views
