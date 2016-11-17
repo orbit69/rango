@@ -1,4 +1,5 @@
 from __future__ import division
+import random
 
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
@@ -32,12 +33,11 @@ def populate():
             "Django": {"pages": django_pages},
             "Other Frameworks": {"pages": other_pages}}
 
-    n = 128
     for cat, cat_data in cats.items():
-        c = add_cat(cat, n, n/2)
-        n /= 2
+        n = random.randint(0, 1000)
+        c = add_cat(cat, n, random.randint(0, n))
         for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"])
+            add_page(c, p["title"], p["url"], random.randint(0, 10))
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):

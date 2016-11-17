@@ -5,10 +5,11 @@ from rango.models import Category, Page
 
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,           {'fields' : ['views', 'likes']}),
+        (None,           {'fields' : ['views', 'likes', 'slug']}),
         ('Sam zmienilem',{'fields' : ['name']}),
     ]
     list_display = ('name', 'views', 'likes')
+    prepopulated_fields = {'slug' : ('name',),}
 
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'url', 'views')
