@@ -14,8 +14,11 @@ def index(request):
 
 
 def about(request):
-    context_dict = {'aboutMessage': "Tablica, z, about, w, views"}
-    return render(request, 'rango/about.html', context = context_dict)
+    # context_dict = {'aboutMessage': "Tablica, z, about, w, views"}
+    # return render(request, 'rango/about.html', context = context_dict)
+    print(request.method)   #to printuje do konsoli
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 
 def show_category(request, category_name_slug):
