@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
@@ -14,11 +15,13 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
-
     class Meta:
         verbose_name_plural = 'catogories'
 
     def __str__(self):
+        return self.name
+
+    def __unicode__(self): #for python 2x
         return self.name
 
 
@@ -30,3 +33,19 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+    def __unicode__(self):
+        return self.title
+
+
+class UserProfile(models.Model):
+    #linkuje to do User w modelach
+    user = models.OneToOneField(User)
+    webstie = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def __unicode(self):
+        return self.user.username
